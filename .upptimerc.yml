@@ -1,31 +1,32 @@
-# Change these first
-owner: upptime # Your GitHub organization or username, where this repository lives
-repo: upptime # The name of this repository
+# AetherVault uptime monitor and status page (Upptime, free on GitHub Actions + Pages).
+# Checks run every 5 minutes. Outages open an issue in this repository.
+owner: Anwozo157
+repo: aethervault-status
 
 sites:
-  - name: Google
-    url: https://www.google.com
-  - name: Wikipedia
-    url: https://en.wikipedia.org
-  - name: Hacker News
-    url: https://news.ycombinator.com
-  - name: Secret Site
-    url: $SECRET_SITE
+  - name: Website and console
+    url: https://getaethervault.com/
+  - name: Sign-in service
+    url: https://yvcejahygubzbbbooxas.supabase.co/auth/v1/health
+    # The anon key is public by design (it's in the website's code); it only identifies the project.
+    headers:
+      - "apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl2Y2VqYWh5Z3ViemJiYm9veGFzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQzMzQ2NTUsImV4cCI6MjEwOTkxMDY1NX0.K8A02NLk74If4kAF-U6siD58uuZtAr1U_vq0H3aLlUA"
+  - name: Database API
+    # 401 = the API answered and refused the schema listing (locked down on purpose). A paused or
+    # failing project answers 5xx instead.
+    expectedStatusCodes:
+      - 401
+    url: https://yvcejahygubzbbbooxas.supabase.co/rest/v1/
+    headers:
+      - "apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl2Y2VqYWh5Z3ViemJiYm9veGFzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQzMzQ2NTUsImV4cCI6MjEwOTkxMDY1NX0.K8A02NLk74If4kAF-U6siD58uuZtAr1U_vq0H3aLlUA"
 
 status-website:
-  # Add your custom domain name, or remove the `cname` line if you don't have a domain
-  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
-  cname: demo.upptime.js.org
-  # baseUrl: /your-repo-name
-  logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
-  name: Upptime
-  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
-  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
+  baseUrl: /aethervault-status
+  name: AetherVault Status
+  introTitle: "**AetherVault** service status"
+  introMessage: Live availability of the AetherVault website, sign-in and database API, checked every 5 minutes from GitHub Actions. Report security issues to security@getaethervault.com.
   navbar:
     - title: Status
       href: /
-    - title: GitHub
-      href: https://github.com/$OWNER/$REPO
-
-# Upptime also supports notifications, assigning issues, and more
-# See https://upptime.js.org/docs/configuration
+    - title: AetherVault
+      href: https://getaethervault.com/
